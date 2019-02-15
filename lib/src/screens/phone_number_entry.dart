@@ -9,7 +9,6 @@ class PhoneNumberEntry extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Verify your phone number'),
-        backgroundColor: Colors.transparent,
       ),
       body: Column(
         children: <Widget>[
@@ -43,6 +42,7 @@ class PhoneNumberEntry extends StatelessWidget {
         return Container(
           padding: EdgeInsets.only(left: 55.0, right: 55.0),
           child: TextField(
+            autofocus: true,
             onChanged: bloc.changePhoneNumber,
             keyboardType: TextInputType.number,
             decoration: InputDecoration(

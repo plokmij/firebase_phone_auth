@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pin_entry_text_field/pin_entry_text_field.dart';
 import '../blocs/bloc.dart';
 import '../blocs/provider.dart';
-import 'phone_number_entry.dart';
+import 'newscreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class phoneVerification extends StatelessWidget {
@@ -14,7 +14,6 @@ class phoneVerification extends StatelessWidget {
           'Verify ${bloc.validPhone}',
           textAlign: TextAlign.center,
         ),
-        backgroundColor: Colors.transparent,
       ),
       body: Column(
         children: <Widget>[textPart(bloc), pinEntryField(bloc)],
@@ -30,7 +29,7 @@ class phoneVerification extends StatelessWidget {
             alignment: Alignment.center,
             padding: EdgeInsets.all(25.0),
             child: Text(
-              'We have sent a SMS with a code +91${bloc.validPhone}',
+              'We have sent a SMS with a code ${bloc.validPhone}',
               style: TextStyle(
                 fontSize: 17.0,
               ),
@@ -47,20 +46,25 @@ class phoneVerification extends StatelessWidget {
       stream: FirebaseAuth.instance.onAuthStateChanged,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return PinEntryTextField(
+          fieldWidth: 36.0,
+          fontSize: 18.0,
           fields: 6,
           onSubmit: (String pin) {
             bloc.smsCode = pin;
-            print(bloc.signIn());
-            if (snapshot.hasData) {
-              if (snapshot.data.providerData.length == 1) {
-                print(snapshot.data.uid);
+            bloc.signIn().then((result) {
+              if (result &&
+                  snapshot.hasData &&
+                  snapshot.data.providerData.length == 1) {
+                print(snapshot.data);
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => PhoneNumberEntry(),
+                      builder: (context) => Home(),
                     ));
+              } else if (!result) {
+                print('Sign in failed');
               }
-            }
+            });
           },
         );
       },

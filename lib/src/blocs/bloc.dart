@@ -50,12 +50,12 @@ class Bloc extends Object with Validators {
     );
   }
 
-  bool signIn() {
+  Future<bool> signIn() async{
     bool signedIn = false;
-    FirebaseAuth.instance
+    await FirebaseAuth.instance
         .signInWithPhoneNumber(verificationId: verificationId, smsCode: smsCode)
         .then((user) {
-          print(user);
+          //print(user);
           signedIn = true;
         })
         .catchError((e) {
