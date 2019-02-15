@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'verification_screen.dart';
 
 class PhoneNumberEntry extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class PhoneNumberEntry extends StatelessWidget {
           Spacer(
             flex: 1,
           ),
-          button(),
+          button(context),
         ],
       ),
     );
@@ -48,12 +49,16 @@ class PhoneNumberEntry extends StatelessWidget {
     );
   }
 
-  Widget button() {
+  Widget button(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(top: 45.0, bottom: 25.0),
       child: RaisedButton(
         child: Text('NEXT'),
-        onPressed: null,
+        onPressed: (){
+          Navigator.push(context, MaterialPageRoute(
+                builder: (context) => phoneVerification(),
+              ));
+        },
       ),
     );
   }
