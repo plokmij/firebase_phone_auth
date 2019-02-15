@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'homepage.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
+import 'src/app.dart';
+import 'src/blocs/provider.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: MyHomePage(),
+    return Provider(
+      child: MaterialApp(
+        home: App(),
+      ),
     );
   }
 }
-
+/*
 class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -139,3 +142,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+*/
