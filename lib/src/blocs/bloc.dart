@@ -9,6 +9,10 @@ class Bloc extends Object with Validators {
   //changePhoneNumber = change in phonenumber textfield :)
   Function(String) get changePhoneNumber => _phoneNumber.sink.add;
 
+  submit() {
+   validPhone = _phoneNumber.value; 
+  }
+
   dispose(){
     _phoneNumber.close();
   }

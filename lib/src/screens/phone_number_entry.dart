@@ -74,6 +74,7 @@ class PhoneNumberEntry extends StatelessWidget {
                         MaterialPageRoute(
                           builder: (context) => phoneVerification(),
                         ));
+                    bloc.submit();
                   },
           ),
         );
