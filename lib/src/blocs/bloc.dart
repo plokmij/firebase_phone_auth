@@ -7,7 +7,7 @@ class Bloc extends Object with Validators {
   String validPhone;
   Stream<String> get phoneNumber => _phoneNumber.stream.transform(validatePhoneNumber);
   //changePhoneNumber = change in phonenumber textfield :)
-  Function get changePhoneNumber => _phoneNumber.sink.add;
+  Function(String) get changePhoneNumber => _phoneNumber.sink.add;
 
   dispose(){
     _phoneNumber.close();
