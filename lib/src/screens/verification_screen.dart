@@ -3,6 +3,7 @@ import 'package:pin_entry_text_field/pin_entry_text_field.dart';
 import '../blocs/bloc.dart';
 import '../blocs/provider.dart';
 import 'phone_number_entry.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class phoneVerification extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class phoneVerification extends StatelessWidget {
         backgroundColor: Colors.transparent,
       ),
       body: Column(
-        children: <Widget>[textPart(bloc), pinEntryField(bloc, context)],
+        children: <Widget>[textPart(bloc), pinEntryField(bloc)],
       ),
     );
   }
@@ -41,18 +42,27 @@ class phoneVerification extends StatelessWidget {
     );
   }
 
-  Widget pinEntryField(Bloc bloc, BuildContext context) {
-    return PinEntryTextField(
-      fields: 6,
-      onSubmit: (String pin) {
-        bloc.smsCode = pin;
-        if (true) {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => PhoneNumberEntry(),
-              ));
-        }
+  Widget pinEntryField(Bloc bloc) {
+    return StreamBuilder<FirebaseUser>(
+      stream: FirebaseAuth.instance.onAuthStateChanged,
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        return PinEntryTextField(
+          fields: 6,
+          onSubmit: (String pin) {
+            bloc.smsCode = pin;
+            print(bloc.signIn());
+            if (snapshot.hasData) {
+              if (snapshot.data.providerData.length == 1) {
+                print(snapshot.data.uid);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PhoneNumberEntry(),
+                    ));
+              }
+            }
+          },
+        );
       },
     );
   }
