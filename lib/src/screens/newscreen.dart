@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'home_navi.dart';
 
 class Home extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -29,6 +30,10 @@ class Home extends StatelessWidget {
             title: Text('Profile'),
           ),
         ],
+      ),
+
+      body: Center(
+        child: HomePage(),
       ),
     );
   }
