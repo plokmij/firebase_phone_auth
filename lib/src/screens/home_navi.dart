@@ -4,20 +4,27 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        optionRow(),
-        optionRow(),
-        optionRow()
+        Spacer(),
+        optionRow(Icons.favorite),
+        optionRow(Icons.location_on),
+        optionRow(Icons.search),
+        Spacer(),
       ],
     );
   }
 
-  Widget optionRow() {
+  Widget optionRow(IconData ico) {
     return Container(
       margin: EdgeInsets.symmetric(
         vertical: 16.0,
         horizontal: 24.0,
       ),
-      child: decoratedCard(),
+      child: Stack(
+        children: [
+          decoratedCard(),
+          icon(ico),
+        ],
+      ),
     );
   }
 
@@ -37,4 +44,30 @@ class HomePage extends StatelessWidget {
           ]),
     );
   }
+
+  Widget icon(IconData ico) {
+    return Container(
+      margin: EdgeInsets.only(top: 16.0, bottom: 16.0, left: 16.0),
+      alignment: FractionalOffset.centerLeft,
+      child: Icon(
+        ico,
+        color: Colors.white,
+        size: 92.0,
+      ),
+    );
+  }
+
+/*
+  Widget cardContent = new Container(
+    margin: EdgeInsets.fromLTRB(30.0, 16.0, 16.0, 16.0),
+    constraints: BoxConstraints.expand(),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Container(height: 4.0,),
+
+      ],
+    ),
+  );
+  */
 }

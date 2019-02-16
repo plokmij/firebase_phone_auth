@@ -32,8 +32,9 @@ class Home extends StatelessWidget {
         ],
       ),
 
-      body: Center(
+      body: Align(
         child: HomePage(),
+        alignment: Alignment.center,
       ),
     );
   }
