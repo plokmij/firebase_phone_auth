@@ -33,7 +33,7 @@ class Home extends StatelessWidget {
       ),
 
       body: Align(
-        child: HomePage(),
+        child: HomePageBody(),
         alignment: Alignment.center,
       ),
     );
