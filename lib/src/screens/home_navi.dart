@@ -67,13 +67,13 @@ class CardRow extends StatelessWidget {
   }
 
   final headerTextStyle = TextStyle(
-      color: Colors.white, fontSize: 24.0, fontWeight: FontWeight.w600);
+      color: Colors.white, fontSize: 21.0, fontWeight: FontWeight.w600);
 
   final regularTextStyle = TextStyle(
       color: Colors.white, fontSize: 9.0, fontWeight: FontWeight.w400);
 
   final subHeaderStyle = TextStyle(
-    fontSize: 14.0,
+    fontSize: 12.0,
     color: Colors.white,
     fontWeight: FontWeight.w400,
   );
